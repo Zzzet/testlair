@@ -25,8 +25,8 @@ public class ProjectController {
 
 
     @RequestMapping(value = "/projects/{projectName}", method = RequestMethod.GET)
-    String getProject(@PathVariable String projectName) {
-        return "get project " + projectName;
+    Project getProject(@PathVariable String projectName) {
+        return testlairService.getProjectByName(projectName);
     }
 
     @RequestMapping(value = "/projects/{projectName}", method = RequestMethod.POST)

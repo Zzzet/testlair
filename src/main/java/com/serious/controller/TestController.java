@@ -1,5 +1,6 @@
 package com.serious.controller;
 
+import com.serious.entity.Test;
 import com.serious.service.TestlairService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -7,6 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * Created by zzz on 1/3/16.
@@ -18,8 +21,8 @@ public class TestController {
     TestlairService testlairService;
 
     @RequestMapping(value = "/projects/{projectName}/tests", method = RequestMethod.GET)
-    String getTests(@PathVariable String projectName) {
-        return "get tests for project " + projectName;
+    List<Test> getTests(@PathVariable String projectName) {
+       return testlairService.getTestsForProject(projectName);
     }
 
     @RequestMapping(value = "/projects/{projectName}/tests/{testName}", method = RequestMethod.GET)

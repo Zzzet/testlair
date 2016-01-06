@@ -39,4 +39,8 @@ public class Test {
         this.text = text;
     }
 
+
+    public Test() {
+
+    }
 }

@@ -1,5 +1,6 @@
 package com.serious.repository;
 
+import com.serious.entity.Project;
 import com.serious.entity.Test;
 import org.springframework.data.repository.CrudRepository;
 
@@ -11,5 +12,5 @@ import java.util.List;
 public interface TestRepo extends CrudRepository<Test, Long> {
     Test findByIdAndProjectId(Long id, Long projectId);
 
-    List<Test> findByProjectId(Long projectId);
+    List<Test> findByProjectId(Project project);
 }

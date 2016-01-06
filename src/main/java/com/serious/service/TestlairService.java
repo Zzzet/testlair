@@ -32,12 +32,17 @@ public class TestlairService {
        return testRepo.findByIdAndProjectId(testId, projectId);
     }
 
-    public List<Test> getTestsForProject(Long projectId) {
-        return testRepo.findByProjectId(projectId);
+    public List<Test> getTestsForProject(String projectName) {
+        Project project = projectRepo.findByName(projectName);
+        return testRepo.findByProjectId(project);
     }
 
     public Project getProject(Long projectId) {
         return projectRepo.findOne(projectId);
+    }
+
+    public Project getProjectByName(String name) {
+        return projectRepo.findByName(name);
     }
 
     public Iterable<Project> getProjects() {

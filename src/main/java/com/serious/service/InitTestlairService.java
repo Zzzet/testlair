@@ -22,8 +22,14 @@ public class InitTestlairService {
     @PostConstruct
     public void init() {
         Project proj = new Project("SERIOUS", "very very serious project");
-        Test test = new Test (proj, "Very important functionality", "blah blah", "important steps");
+        Test test = new Test (proj, "Very serious functionality", "blah blah", "serious steps");
         projectRepo.save(proj);
         testRepo.save(test);
+
+        proj = new Project("IMPORTANT", "Hi");
+        test = new Test (proj, "Very important functionality", "blah blah", "important steps");
+        projectRepo.save(proj);
+        testRepo.save(test);
+
     }
 }
