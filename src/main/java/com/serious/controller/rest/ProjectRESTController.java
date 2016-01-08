@@ -1,4 +1,4 @@
-package com.serious.controller;
+package com.serious.controller.rest;
 
 import com.serious.entity.Project;
 import com.serious.service.TestlairService;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @EnableAutoConfiguration
-public class ProjectController {
+public class ProjectRESTController {
     @Autowired
     TestlairService testlairService;
 

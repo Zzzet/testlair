@@ -1,4 +1,4 @@
-package com.serious.controller;
+package com.serious.controller.rest;
 
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.PathVariable;

@@ -1,4 +1,4 @@
-package com.serious.controller;
+package com.serious.controller.rest;
 
 import com.serious.entity.Test;
 import com.serious.service.TestlairService;
