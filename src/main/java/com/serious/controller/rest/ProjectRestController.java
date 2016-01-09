@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @EnableAutoConfiguration
-public class ProjectRESTController {
+public class ProjectRestController {
     @Autowired
     TestlairService testlairService;
 
@@ -43,6 +43,4 @@ public class ProjectRESTController {
     String deleteProject(@PathVariable String projectName) {
         return "delete project " + projectName;
     }
-
-
 }

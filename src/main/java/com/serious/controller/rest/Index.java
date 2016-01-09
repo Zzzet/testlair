@@ -16,10 +16,4 @@ public class Index {
     String home() {
         return "Hello World!";
     }
-
-
-
-
-
-
 }

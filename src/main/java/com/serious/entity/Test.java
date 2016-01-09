@@ -1,5 +1,6 @@
 package com.serious.entity;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,27 +10,18 @@ import javax.persistence.*;
  * Created by zzz on 1/3/16.
  */
 @Entity
+@Data
 public class Test {
     @Id
     @GeneratedValue
-    @Getter
     private Long id;
-//    @Getter
+    //    @Getter
 //    @Setter
 //    private Long version;
-    @Getter
-    @Setter
     @ManyToOne
     private Project projectId;
-
-    @Getter
-    @Setter
     private String name;
-    @Getter
-    @Setter
     private String description;
-    @Getter
-    @Setter
     private String text;
 
     public Test(Project projectId, String name, String description, String text) {
@@ -39,8 +31,6 @@ public class Test {
         this.text = text;
     }
 
-
     public Test() {
-
     }
 }

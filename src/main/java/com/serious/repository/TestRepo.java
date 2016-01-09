@@ -10,7 +10,8 @@ import java.util.List;
  * Created by zzz on 1/3/16.
  */
 public interface TestRepo extends CrudRepository<Test, Long> {
-    Test findByIdAndProjectId(Long id, Long projectId);
+    Test findByIdAndProjectId(Test test, Project project);
+    Test findByNameAndProjectId(String name, Project project);
 
     List<Test> findByProjectId(Project project);
 }

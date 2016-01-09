@@ -19,7 +19,4 @@ public class ProjectController {
     String getProjects() {
         return "projects";
     }
-
-
-
 }

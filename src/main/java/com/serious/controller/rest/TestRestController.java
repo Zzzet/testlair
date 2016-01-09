@@ -16,7 +16,7 @@ import java.util.List;
  */
 @RestController
 @EnableAutoConfiguration
-public class TestController {
+public class TestRestController {
     @Autowired
     TestlairService testlairService;
 
@@ -26,9 +26,9 @@ public class TestController {
     }
 
     @RequestMapping(value = "/projects/{projectName}/tests/{testName}", method = RequestMethod.GET)
-    String getTest(@PathVariable String projectName, @PathVariable String testName) {
-        return "get test " + testName + "for project " + projectName;
-    }
+    Test getTest(@PathVariable String projectName, @PathVariable String testName) {
+        return testlairService.getTest(projectName, testName);
+     }
 
     @RequestMapping(value = "/projects/{projectName}/tests/{testName}", method = RequestMethod.POST)
     String createTest(@PathVariable String projectName, @PathVariable String testName) {

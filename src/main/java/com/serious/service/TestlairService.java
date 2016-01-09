@@ -28,13 +28,8 @@ public class TestlairService {
         projectRepo.save(proj);
     }
 
-    public Test getTest(Long testId, Long projectId) {
-       return testRepo.findByIdAndProjectId(testId, projectId);
-    }
-
-    public List<Test> getTestsForProject(String projectName) {
-        Project project = projectRepo.findByName(projectName);
-        return testRepo.findByProjectId(project);
+    public Test getTest(String projectName, String testName) {
+       return testRepo.findByNameAndProjectId(testName, getProjectByName(projectName));
     }
 
     public Project getProject(Long projectId) {
@@ -49,7 +44,8 @@ public class TestlairService {
         return projectRepo.findAll();
     }
 
-
-
-
+    public List<Test> getTestsForProject(String projectName) {
+        Project project = projectRepo.findByName(projectName);
+        return testRepo.findByProjectId(project);
+    }
 }
