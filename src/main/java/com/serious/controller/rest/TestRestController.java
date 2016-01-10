@@ -4,10 +4,9 @@ import com.serious.entity.Test;
 import com.serious.service.TestlairService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,26 +21,29 @@ public class TestRestController {
 
     @RequestMapping(value = "/projects/{projectName}/tests", method = RequestMethod.GET)
     List<Test> getTests(@PathVariable String projectName) {
-       return testlairService.getTestsForProject(projectName);
+        return testlairService.getTestsForProject(projectName);
     }
 
     @RequestMapping(value = "/projects/{projectName}/tests/{testName}", method = RequestMethod.GET)
     Test getTest(@PathVariable String projectName, @PathVariable String testName) {
         return testlairService.getTest(projectName, testName);
-     }
+    }
 
-    @RequestMapping(value = "/projects/{projectName}/tests/{testName}", method = RequestMethod.POST)
-    String createTest(@PathVariable String projectName, @PathVariable String testName) {
-        return "create test " + testName + "for project " + projectName;
+    @RequestMapping(value = "/projects/{projectName}/tests", method = RequestMethod.POST)
+    ResponseEntity<Test> createTest(@PathVariable String projectName, @RequestBody Test test) {
+        testlairService.saveTest(test);
+        return new ResponseEntity<Test>(test, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/projects/{projectName}/tests/{testName}", method = RequestMethod.PUT)
-    String updateTest(@PathVariable String projectName, @PathVariable String testName) {
-        return "update test " + testName + "for project " + projectName;
+    ResponseEntity<Test> updateTest(@PathVariable String projectName, @PathVariable String testName, @RequestBody Test test) {
+        testlairService.updateTest(projectName, testName, test);
+        return new ResponseEntity<Test>(test, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/projects/{projectName}/tests/{testName}", method = RequestMethod.DELETE)
-    String deleteTest(@PathVariable String projectName, @PathVariable String testName) {
-        return "delete test " + testName + "for project " + projectName;
+    ResponseEntity deleteTest(@PathVariable String projectName, @PathVariable String testName) {
+        testlairService.deleteTest(projectName, testName);
+        return new ResponseEntity(HttpStatus.OK);
     }
 }

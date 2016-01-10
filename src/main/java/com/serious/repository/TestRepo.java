@@ -14,4 +14,5 @@ public interface TestRepo extends CrudRepository<Test, Long> {
     Test findByNameAndProjectId(String name, Project project);
 
     List<Test> findByProjectId(Project project);
+    void deleteByNameAndProjectId(String name, Project project);
 }

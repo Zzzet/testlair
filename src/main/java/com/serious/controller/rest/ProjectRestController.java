@@ -1,13 +1,13 @@
 package com.serious.controller.rest;
 
 import com.serious.entity.Project;
+import com.serious.entity.Test;
 import com.serious.service.TestlairService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by zzz on 1/3/16.
@@ -18,29 +18,31 @@ public class ProjectRestController {
     @Autowired
     TestlairService testlairService;
 
-    @RequestMapping("/projects")
+    @RequestMapping(value = "/projects", method = RequestMethod.GET)
     Iterable<Project> getProjects() {
         return testlairService.getProjects();
     }
 
+    @RequestMapping(value = "/projects", method = RequestMethod.POST)
+    ResponseEntity<Project> createProject(@RequestBody Project project) {
+        testlairService.saveProject(project);
+        return new ResponseEntity<Project>(project, HttpStatus.OK);
+    }
 
     @RequestMapping(value = "/projects/{projectName}", method = RequestMethod.GET)
     Project getProject(@PathVariable String projectName) {
         return testlairService.getProjectByName(projectName);
     }
 
-    @RequestMapping(value = "/projects/{projectName}", method = RequestMethod.POST)
-    String createProject(@PathVariable String projectName) {
-        return "create project " + projectName;
-    }
-
     @RequestMapping(value = "/projects/{projectName}", method = RequestMethod.PUT)
-    String updateProject(@PathVariable String projectName) {
-        return "update project " + projectName;
+    ResponseEntity<Project> updateProject(@PathVariable String projectName, @RequestBody Project project) {
+        testlairService.updateProject(projectName, project);
+        return new ResponseEntity<Project>(project, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/projects/{projectName}", method = RequestMethod.DELETE)
-    String deleteProject(@PathVariable String projectName) {
-        return "delete project " + projectName;
+    ResponseEntity deleteProject(@PathVariable String projectName) {
+        testlairService.deleteProject(projectName);
+        return new ResponseEntity(HttpStatus.OK);
     }
 }

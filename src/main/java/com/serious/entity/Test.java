@@ -18,6 +18,7 @@ public class Test {
     //    @Getter
 //    @Setter
 //    private Long version;
+    //todo нужно ли хранить тут Project или достачно projectName или id?
     @ManyToOne
     private Project projectId;
     private String name;

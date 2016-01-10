@@ -9,4 +9,5 @@ import org.springframework.data.repository.CrudRepository;
 public interface ProjectRepo extends CrudRepository<Project, Long> {
 
     Project findByName(String name);
+    void deleteByName(String name);
 }

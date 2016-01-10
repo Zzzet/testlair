@@ -21,15 +21,16 @@ public class InitTestlairService {
 
     @PostConstruct
     public void init() {
-        Project proj = new Project("SERIOUS", "very very serious project");
+        Project proj = new Project("serious", "very very serious project");
         Test test = new Test (proj, "Very serious functionality", "blah blah", "serious steps");
         projectRepo.save(proj);
         testRepo.save(test);
 
-        proj = new Project("IMPORTANT", "Hi");
+        proj = new Project("important", "Hi");
         test = new Test (proj, "Very important functionality", "blah blah", "important steps");
+        Test test2 = new Test (proj, "dosomething", "sdfsdf", "do it");
         projectRepo.save(proj);
         testRepo.save(test);
-
+        testRepo.save(test2);
     }
 }

@@ -28,8 +28,31 @@ public class TestlairService {
         projectRepo.save(proj);
     }
 
+    //todo обновлять только нужное поле
+    public void updateProject(String name, Project updatedProject) {
+        Project oldProj = getProjectByName(name);
+        updatedProject.setId(oldProj.getId());
+
+        if (updatedProject.getDescription() == null) updatedProject.setDescription(oldProj.getDescription());
+        if (updatedProject.getName() == null) updatedProject.setName(oldProj.getName());
+
+        saveProject(updatedProject);
+    }
+
+    public void updateTest(String projectName, String name, Test updatedTest) {
+        Test oldTest = getTest(projectName, name);
+        updatedTest.setId(oldTest.getId());
+
+        if (updatedTest.getProjectId() == null) updatedTest.setProjectId(oldTest.getProjectId());
+        if (updatedTest.getName() == null) updatedTest.setName(oldTest.getName());
+        if (updatedTest.getDescription() == null) updatedTest.setDescription(oldTest.getDescription());
+        if (updatedTest.getText() == null) updatedTest.setText(oldTest.getText());
+
+        saveTest(updatedTest);
+    }
+
     public Test getTest(String projectName, String testName) {
-       return testRepo.findByNameAndProjectId(testName, getProjectByName(projectName));
+        return testRepo.findByNameAndProjectId(testName, getProjectByName(projectName));
     }
 
     public Project getProject(Long projectId) {
@@ -47,5 +70,13 @@ public class TestlairService {
     public List<Test> getTestsForProject(String projectName) {
         Project project = projectRepo.findByName(projectName);
         return testRepo.findByProjectId(project);
+    }
+
+    public void deleteProject(String projectName) {
+        projectRepo.delete(getProjectByName(projectName));
+    }
+
+    public void deleteTest( String projectName, String name) {
+        testRepo.delete(getTest(projectName, name));
     }
 }
